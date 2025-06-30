@@ -121,7 +121,7 @@
   <div class="main-container mx-auto max-w-screen-xl">
     <video autoplay muted loop playsinline class="character-image" poster="intro_charecter.png">
       <source src="intro_charecter.mp4" type="video/mp4">
-      <img src="intro_charecter.png" alt="Gojo Satoru">
+      <img src="intro_charecter.png" alt="Character">
     </video>
 
     <nav class="flex justify-between items-center mb-6 relative z-20">
@@ -147,26 +147,30 @@
       </div>
 
       <div class="grid gap-4 grid-cols-1 sm:grid-cols-2" id="video-grid-container">
-        </div>
+        <!-- Videos will load here -->
+      </div>
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const videoGridContainer = document.getElementById('video-grid-container');
       let videoCardsHtml = '';
 
-      // You can adjust the number 4 based on how many intro videos you have (i1.mp4, i2.mp4, etc.)
-      const numberOfVideos = 4; // Example: if you have i1.mp4, i2.mp4, i3.mp4, i4.mp4
+      const numberOfVideos = 4;
 
       for (let i = 1; i <= numberOfVideos; i++) {
         videoCardsHtml += `
-          <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+          <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
             <video class="w-full h-auto object-cover" autoplay muted loop playsinline>
               <source src="i${i}.mp4" type="video/mp4">
               <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
+            <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
+              class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
+              ✨ Message on Instagram
+            </a>
           </div>
         `;
       }
