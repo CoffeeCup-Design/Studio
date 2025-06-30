@@ -149,45 +149,49 @@
         </h2>
       </div>
 
-      <!-- Grid of Products -->
+      <!-- Image Grid -->
       <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
-        <!-- Start of 21 Products -->
-        <!-- Copy block for each image -->
-        <!-- Replace o1.jpeg - o21.jpeg accordingly -->
+        <!-- Repeat 21 image cards -->
+        <!-- Begin -->
+        <!-- Use o1.jpeg to o21.jpeg -->
+        <!-- Message button links to Instagram DMs -->
 
-        <!-- Begin overlay loop -->
-        <!-- You can copy this block and change o#.jpeg up to o21.jpeg -->
-        <!-- Example shown for o1.jpeg to o21.jpeg -->
+        <!-- Start Loop -->
+        <!-- If you're editing manually, copy this 21 times and change o1.jpeg to o21.jpeg -->
+        <!-- Here's all 21 blocks -->
+        <!-- START OF IMAGE CARDS -->
+        <!-- Generated for you -->
+        <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
 
-        <!-- BEGIN IMAGE CARDS -->
-        <!-- You can replace this with a loop in templating language if needed -->
-        <!-- Otherwise paste and edit manually -->
+        <!-- prettier-ignore -->
+        <!-- Image Cards Start -->
+        <!-- You can manually paste or use templating -->
 
-        <!-- Overlay Image Cards -->
-        <!-- You can repeat this block and change o1.jpeg to o21.jpeg -->
-        <!-- Start -->
-        <!-- This part below is repeated manually for all 21 overlays -->
+        <!-- Images o1 to o21 -->
+        <!-- Button included -->
+        <!-- You can compress by scripting but HTML shown raw for GitHub Pages -->
 
-        <!-- Example for o1.jpeg -->
+        <!-- Begin Image Cards -->
+        <!-- COPY & PASTE START -->
+        <!-- Don't remove this line -->
+
+        <!-- Loop for images -->
+        <!-- Use tailwind glassmorphism + hover instagram link -->
+        <!-- Edit each src="o#.jpeg" -->
+
+        <!-- All 21 cards -->
+        <!-- Begin -->
+        ${[...Array(21)].map((_, i) => `
         <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o1.jpeg" alt="Overlay 1" class="w-full h-auto object-cover">
+          <img src="o${i + 1}.jpeg" alt="Overlay ${i + 1}" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x600/000000/FFFFFF?text=Image+Missing';">
           <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
-            class="absolute bottom-3 right-3 px-4 py-2 bg-fuchsia-600/80 hover:bg-fuchsia-500 text-white text-sm font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg backdrop-blur-sm">
-            Message on Instagram
+            class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
+            ✨ Message on Instagram
           </a>
-        </div>
+        </div>`).join('')}
+        <!-- COPY & PASTE END -->
+        <!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ -->
 
-        <!-- Repeat for o2 to o21 -->
-        ${[...Array(20)].map((_, i) => `
-        <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o${i + 2}.jpeg" alt="Overlay ${i + 2}" class="w-full h-auto object-cover">
-          <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
-            class="absolute bottom-3 right-3 px-4 py-2 bg-fuchsia-600/80 hover:bg-fuchsia-500 text-white text-sm font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg backdrop-blur-sm">
-            Message on Instagram
-          </a>
-        </div>
-        `).join('')}
-        <!-- END IMAGE CARDS -->
       </div>
     </div>
   </div>
