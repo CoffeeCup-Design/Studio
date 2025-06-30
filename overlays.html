@@ -114,6 +114,7 @@
   </style>
 </head>
 <body class="selection:bg-fuchsia-400 selection:text-fuchsia-900">
+
   <!-- Sidebar -->
   <div class="sidebar">
     <a href="index.html" class="sidebar-button" title="Home">🏠</a>
@@ -151,73 +152,19 @@
 
       <!-- Image Grid -->
       <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o1.jpeg" alt="" class="w-full h-auto object-cover">
+        <!-- Repeat for 21 images -->
+        ${[...Array(21)].map((_, i) => `
+        <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+          <img src="o${i + 1}.jpeg" alt="Overlay ${i + 1}" class="w-full h-auto object-cover">
+          <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
+             class="absolute bottom-3 right-3 px-4 py-2 bg-fuchsia-600/80 hover:bg-fuchsia-500 text-white text-sm font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg backdrop-blur-sm">
+            Message on Instagram
+          </a>
         </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o2.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o3.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o4.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-      
-      <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o5.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o6.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o7.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o8.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o9.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o10.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o11.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o12.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-      
-      <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o13.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o14.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o15.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o16.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-      <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o17.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o18.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o19.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o20.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-       <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="o21.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        </div>
+        `).join('')}
+      </div>
     </div>
   </div>
+
 </body>
 </html>
