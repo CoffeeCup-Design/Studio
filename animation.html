@@ -153,14 +153,14 @@
       const overlayVideoGridContainer = document.getElementById('overlay-video-grid-container');
       let videoCardsHtml = '';
 
-      // Set the number of overlay videos you have (e.g., o1.mp4, o2.mp4, o3.mp4, o4.mp4)
-      const numberOfOverlayVideos = 4; // Adjust this number based on your files
+      // Set the number of overlay videos you have (e.g., a1.mp4, a2.mp4, a3.mp4, a4.mp4)
+      const numberOfOverlayVideos = 4; // Adjust this number based on your actual files
 
       for (let i = 1; i <= numberOfOverlayVideos; i++) {
         videoCardsHtml += `
           <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
             <video class="w-full h-auto object-cover" autoplay muted loop playsinline>
-              <source src="o${i}.mp4" type="video/mp4">
+              <source src="a${i}.mp4" type="video/mp4">
               <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
