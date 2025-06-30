@@ -114,24 +114,19 @@
   </style>
 </head>
 <body class="selection:bg-fuchsia-400 selection:text-fuchsia-900">
-  <!-- Sidebar -->
   <div class="sidebar">
     <a href="index.html" class="sidebar-button" title="Home">🏠</a>
   </div>
 
-  <!-- Main Container -->
   <div class="main-container mx-auto max-w-screen-xl">
-    <!-- Character Image -->
-    <img src="overlays_charecter.png" onerror="this.src='https://placehold.co/700x700/000000/FFFFFF?text=Character+Image';" alt="Gojo Satoru" class="character-image">
+    <img src="overlays_charecter.png" onerror="this.src='https://placehold.co/700x700/000000/FFFFFF?text=Character+Image';" alt="Overlay Character" class="character-image">
 
-    <!-- Header -->
     <nav class="flex justify-between items-center mb-6 relative z-20">
       <div class="text-white text-xl sm:text-3xl font-extrabold tracking-wide text-shadow-lg">
         CoffeeCup Design Studio
       </div>
     </nav>
 
-    <!-- Main Title -->
     <div class="flex-grow flex flex-col justify-center items-start px-2 sm:px-6 md:px-10 relative z-20 pt-6 sm:pt-8">
       <p class="text-gray-300 text-xs sm:text-base mb-2 font-light text-shadow-lg">
         We Also Make Animated Art!
@@ -141,7 +136,6 @@
       </h1>
     </div>
 
-    <!-- Work Section -->
     <div class="mt-auto relative z-20 px-2 sm:px-6 md:px-10 pb-6 sm:pb-10">
       <div class="flex items-baseline mb-4 sm:mb-6">
         <h2 class="text-white text-lg sm:text-2xl font-semibold text-shadow-lg">
@@ -149,22 +143,37 @@
         </h2>
       </div>
 
-      <!-- Image Grid -->
-      <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="overlay.jpeg" alt="" class="w-full h-auto object-cover">
+      <div class="grid gap-4 grid-cols-1 sm:grid-cols-2" id="overlay-video-grid-container">
         </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="overlay.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="overlay.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-        <div class="glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <img src="overlay.jpeg" alt="" class="w-full h-auto object-cover">
-        </div>
-      </div>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const overlayVideoGridContainer = document.getElementById('overlay-video-grid-container');
+      let videoCardsHtml = '';
+
+      // Set the number of overlay videos you have (e.g., o1.mp4, o2.mp4, o3.mp4, o4.mp4)
+      const numberOfOverlayVideos = 4; // Adjust this number based on your files
+
+      for (let i = 1; i <= numberOfOverlayVideos; i++) {
+        videoCardsHtml += `
+          <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+            <video class="w-full h-auto object-cover" autoplay muted loop playsinline>
+              <source src="o${i}.mp4" type="video/mp4">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
+              class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
+              ✨ Message on Instagram
+            </a>
+          </div>
+        `;
+      }
+      overlayVideoGridContainer.innerHTML = videoCardsHtml;
+    });
+  </script>
+
 </body>
 </html>
