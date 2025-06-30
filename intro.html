@@ -119,9 +119,10 @@
   </div>
 
   <div class="main-container mx-auto max-w-screen-xl">
-    <video autoplay muted loop playsinline class="character-image" poster="intro_charecter.png">
+    <video autoplay muted loop playsinline class="character-image" poster="intro_charecter.png" id="mainCharacterVideo">
       <source src="intro_charecter.mp4" type="video/mp4">
-      <img src="intro_charecter.png" alt="Character">
+      <img src="intro_charecter.png" alt="Character Fallback">
+      Your browser does not support the video tag.
     </video>
 
     <nav class="flex justify-between items-center mb-6 relative z-20">
@@ -147,8 +148,7 @@
       </div>
 
       <div class="grid gap-4 grid-cols-1 sm:grid-cols-2" id="video-grid-container">
-        <!-- Videos will load here -->
-      </div>
+        </div>
     </div>
   </div>
 
@@ -157,9 +157,10 @@
       const videoGridContainer = document.getElementById('video-grid-container');
       let videoCardsHtml = '';
 
-      const numberOfVideos = 4;
+      // Number of videos for the grid (i1.mp4, i2.mp4, etc.)
+      const numberOfVideosInGrid = 4;
 
-      for (let i = 1; i <= numberOfVideos; i++) {
+      for (let i = 1; i <= numberOfVideosInGrid; i++) {
         videoCardsHtml += `
           <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
             <video class="w-full h-auto object-cover" autoplay muted loop playsinline>
@@ -175,6 +176,26 @@
         `;
       }
       videoGridContainer.innerHTML = videoCardsHtml;
+
+      // --- Debugging for the main character video ---
+      const mainCharacterVideo = document.getElementById('mainCharacterVideo');
+
+      if (mainCharacterVideo) {
+        mainCharacterVideo.addEventListener('error', function() {
+          console.error('Error loading main character video:', mainCharacterVideo.src);
+          console.error('Network state:', mainCharacterVideo.networkState); // 0=EMPTY, 1=IDLE, 2=LOADING, 3=NO_SOURCE
+          console.error('Error code:', mainCharacterVideo.error ? mainCharacterVideo.error.code : 'No error object');
+          // Optional: Replace video with poster image if error occurs
+          mainCharacterVideo.style.display = 'none';
+          const fallbackImg = mainCharacterVideo.querySelector('img');
+          if (fallbackImg) {
+            fallbackImg.style.display = 'block'; // Make sure the fallback image is visible
+          }
+        });
+
+        // Try to load the video explicitly if it hasn't started
+        mainCharacterVideo.load();
+      }
     });
   </script>
 
