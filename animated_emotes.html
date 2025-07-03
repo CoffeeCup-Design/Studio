@@ -3,41 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Animation Emote Collections</title>
+  <title>Intro Collections | CoffeeCup Design Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <style>
+    /* CSS Variables for better maintainability */
+    :root {
+      /* Colors */
+      --color-primary-bg-light: #1A0F2B;
+      --color-primary-bg-dark: #0D0814;
+      --color-glass-light: rgba(255, 255, 255, 0.08);
+      --color-glass-hover: rgba(255, 255, 255, 0.12);
+      --color-glass-border: rgba(255, 255, 255, 0.12);
+      --color-glass-shadow: rgba(0, 0, 0, 0.45);
+      --color-main-bg-start: rgba(50, 30, 70, 0.6);
+      --color-main-bg-end: rgba(15, 10, 25, 0.8);
+      --color-main-border: rgba(255, 255, 255, 0.1);
+      --color-main-shadow-dark: rgba(0, 0, 0, 0.6);
+      --color-main-shadow-accent: rgba(138, 43, 226, 0.5); /* Blue Violet */
+      --color-character-shadow: rgba(138, 43, 226, 0.6);
+      --color-sidebar-bg: rgba(255, 255, 255, 0.05);
+      --color-sidebar-button-bg: rgba(0, 0, 0, 0.3);
+      --color-sidebar-button-hover: rgba(255, 255, 255, 0.1);
+      --color-text-shadow: rgba(0, 0, 0, 0.7);
+
+      /* Spacing */
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.25rem;
+      --spacing-xl: 2rem;
+
+      /* Border Radii */
+      --radius-md: 0.5rem;
+      --radius-lg: 1.5rem;
+      --radius-xl: 2rem;
+
+      /* Transitions */
+      --transition-ease-in-out: all 0.3s ease-in-out;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top left, #1A0F2B 0%, #0D0814 100%);
+      background: radial-gradient(circle at top left, var(--color-primary-bg-light) 0%, var(--color-primary-bg-dark) 100%);
       min-height: 100vh;
       padding: 20px;
       box-sizing: border-box;
+      color: #fff; /* Default text color for the body */
     }
+
+    /* Glassmorphism Effect */
     .glassmorphism {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--color-glass-light);
       backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.45);
-      transition: all 0.3s ease-in-out;
+      border: 1px solid var(--color-glass-border);
+      box-shadow: 0 10px 40px 0 var(--color-glass-shadow);
+      transition: var(--transition-ease-in-out);
     }
+
     .glassmorphism:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: var(--color-glass-hover);
       transform: translateY(-4px);
     }
+
+    /* Main Container Styles */
     .main-container {
       position: relative;
       overflow: hidden;
-      border-radius: 2rem;
-      padding: 2rem;
-      min-height: 100vh;
-      background: linear-gradient(135deg, rgba(50, 30, 70, 0.6), rgba(15, 10, 25, 0.8));
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 60px rgba(138, 43, 226, 0.5);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl);
+      min-height: calc(100vh - 40px); /* Adjust for body padding */
+      background: linear-gradient(135deg, var(--color-main-bg-start), var(--color-main-bg-end));
+      border: 1px solid var(--color-main-border);
+      box-shadow: 0 20px 60px var(--color-main-shadow-dark), 0 0 60px var(--color-main-shadow-accent);
       display: flex;
       flex-direction: column;
     }
+
+    /* Character Video/Image Styles */
     .character-image {
       position: absolute;
       top: -50px;
@@ -45,37 +88,60 @@
       max-width: 700px;
       height: auto;
       z-index: 10;
-      pointer-events: none;
-      filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.6));
+      pointer-events: none; /* Prevents image from blocking clicks */
+      filter: drop-shadow(0 0 20px var(--color-character-shadow));
+      opacity: 0.8; /* Slightly reduce opacity for a softer look */
+      /* Ensure fallback image inside video is hidden by default */
     }
+    .character-image img {
+      display: none; /* Hide fallback image by default, show only if video fails */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    /* Sidebar Styles */
     .sidebar {
       position: fixed;
-      top: 10%;
+      top: 50%; /* Changed from 10% for better vertical centering */
       left: 10px;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--color-sidebar-bg);
       backdrop-filter: blur(12px);
-      border-radius: 1.5rem;
-      padding: 0.5rem 0.25rem;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-sm) 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
+      gap: var(--spacing-md);
       z-index: 50;
     }
+
     .sidebar a {
       width: 40px;
       height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 9999px;
-      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 9999px; /* Tailwind's rounded-full */
+      background-color: var(--color-sidebar-button-bg);
       transition: background 0.3s;
+      color: #fff; /* Icon color */
+      font-size: 1.2rem; /* Icon size */
+      text-decoration: none; /* Remove underline */
     }
+
     .sidebar a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: var(--color-sidebar-button-hover);
     }
+
+    /* Text Shadow Utility */
+    .text-shadow-lg {
+      text-shadow: 2px 2px 6px var(--color-text-shadow);
+    }
+
+    /* Responsive Adjustments */
     @media (max-width: 1024px) {
       .character-image {
         max-width: 550px;
@@ -83,6 +149,7 @@
         top: -30px;
       }
     }
+
     @media (max-width: 768px) {
       .character-image {
         max-width: 400px;
@@ -90,9 +157,10 @@
         top: -20px;
       }
       .main-container {
-        padding: 1.25rem;
+        padding: var(--spacing-lg);
       }
     }
+
     @media (max-width: 640px) {
       .character-image {
         max-width: 260px;
@@ -101,69 +169,102 @@
         opacity: 0.5;
       }
       .main-container {
-        padding: 1rem;
-        border-radius: 1rem;
+        padding: var(--spacing-md);
+        border-radius: var(--radius-md);
+        min-height: calc(100vh - 40px); /* Adjust for body padding */
       }
       .sidebar {
         display: none;
       }
+       /* Adjust header and main content padding for smaller screens */
+      .main-container > header,
+      .main-container > section,
+      .main-container > .mt-auto {
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
+      }
     }
-    .text-shadow-lg {
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+
+    /* Selection Styles - Tailwind's selection utility is good here */
+    .selection\:bg-fuchsia-400::selection {
+      background-color: #f0abfc; /* Tailwind fuchsia-400 */
+    }
+
+    .selection\:text-fuchsia-900::selection {
+      color: #4a044e; /* Tailwind fuchsia-900 */
     }
   </style>
 </head>
 <body class="selection:bg-fuchsia-400 selection:text-fuchsia-900">
-  <div class="sidebar">
-    <a href="index.html" class="sidebar-button" title="Home">🏠</a>
-  </div>
+  <aside class="sidebar" aria-label="Main Navigation">
+    <a href="index.html" class="sidebar-button" title="Home">
+      <i class="fa-solid fa-house"></i>
+    </a>
+    </aside>
 
-  <div class="main-container mx-auto max-w-screen-xl">
-    <video autoplay muted loop playsinline class="character-image" poster="intro_charecter.png" id="mainCharacterVideo">
+  <main class="main-container mx-auto max-w-screen-xl">
+    <video autoplay muted loop playsinline class="character-image" poster="intro_charecter.png" id="mainCharacterVideo"
+           aria-label="Animated character representing CoffeeCup Design Studio">
       <source src="animation_emote_charecter.gif" type="video/mp4">
-      
+      <img src="intro_charecter.png" alt="Animated character fallback image">
+      Your browser does not support the video tag.
     </video>
 
-    <nav class="flex justify-between items-center mb-6 relative z-20">
+    <header class="flex justify-between items-center mb-6 relative z-20">
       <div class="text-white text-xl sm:text-3xl font-extrabold tracking-wide text-shadow-lg">
         CoffeeCup Design Studio
       </div>
-    </nav>
+      </header>
 
-    <div class="flex-grow flex flex-col justify-center items-start px-2 sm:px-6 md:px-10 relative z-20 pt-6 sm:pt-8">
+    <section class="flex-grow flex flex-col justify-center items-start px-2 sm:px-6 md:px-10 relative z-20 pt-6 sm:pt-8">
       <p class="text-gray-300 text-xs sm:text-base mb-2 font-light text-shadow-lg">
         We Also Make Animated Art!
       </p>
       <h1 class="text-white text-3xl sm:text-6xl font-black leading-tight mb-4 text-shadow-lg tracking-tight">
-        Animation Emote<br>Collections
+        Intro<br>Collections
       </h1>
-    </div>
+    </section>
 
-    <div class="mt-auto relative z-20 px-2 sm:px-6 md:px-10 pb-6 sm:pb-10">
+    <section class="mt-auto relative z-20 px-2 sm:px-6 md:px-10 pb-6 sm:pb-10">
       <div class="flex items-baseline mb-4 sm:mb-6">
         <h2 class="text-white text-lg sm:text-2xl font-semibold text-shadow-lg">
           Our Work
         </h2>
       </div>
 
-      <div class="grid gap-4 grid-cols-1 sm:grid-cols-2" id="video-grid-container">
+      <div id="video-grid-container" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
         </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const videoGridContainer = document.getElementById('video-grid-container');
+
+      // Define your video data as an array of objects
+      const videoData = [
+        // Using 'ae' prefix for animated emotes as per your original script
+        { sources: ["ae1.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 1" },
+        { sources: ["ae2.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 2" },
+        { sources: ["ae3.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 3" },
+        { sources: ["ae4.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 4" },
+        // Add more video entries as needed
+        // { sources: ["ae5.mp4"], alt: "Animated Intro Example 5" }
+      ];
+
+      // Generate HTML for video cards
       let videoCardsHtml = '';
+      videoData.forEach(video => {
+        let sourceTags = '';
+        video.sources.forEach(src => {
+          // You might want to infer type or pass it in videoData if not always mp4
+          sourceTags += `<source src="${src}" type="video/mp4">`;
+        });
 
-      const numberOfVideosInGrid = 4; // Adjust this if you have more or fewer grid videos
-
-      for (let i = 1; i <= numberOfVideosInGrid; i++) {
         videoCardsHtml += `
           <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-            <video class="w-full h-auto object-cover" autoplay muted loop playsinline>
-              <source src="ae${i}.mp4" type="video/mp4">
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            <video class="w-full h-auto object-cover" autoplay muted loop playsinline poster="${video.poster || ''}" aria-label="${video.alt}">
+              ${sourceTags}
               Your browser does not support the video tag.
             </video>
             <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
@@ -172,26 +273,28 @@
             </a>
           </div>
         `;
-      }
+      });
       videoGridContainer.innerHTML = videoCardsHtml;
 
-      // --- Debugging for the main character video ---
+      // --- Handling for the main character video/image fallback ---
       const mainCharacterVideo = document.getElementById('mainCharacterVideo');
+      const fallbackImage = mainCharacterVideo.querySelector('img'); // Get the fallback img element
 
       if (mainCharacterVideo) {
+        // Event listener for when the video fails to load
         mainCharacterVideo.addEventListener('error', function() {
           console.error('Error loading main character video:', mainCharacterVideo.src);
-          console.error('Network state:', mainCharacterVideo.networkState); // 0=EMPTY, 1=IDLE, 2=LOADING, 3=NO_SOURCE
+          console.error('Network state:', mainCharacterVideo.networkState);
           console.error('Error code:', mainCharacterVideo.error ? mainCharacterVideo.error.code : 'No error object');
-          // Optional: Replace video with poster image if error occurs
+
+          // Hide the video and show the fallback image
           mainCharacterVideo.style.display = 'none';
-          const fallbackImg = mainCharacterVideo.querySelector('img');
-          if (fallbackImg) {
-            fallbackImg.style.display = 'block'; // Make sure the fallback image is visible
+          if (fallbackImage) {
+            fallbackImage.style.display = 'block';
           }
         });
 
-        // Try to load the video explicitly if it hasn't started
+        // Ensure the video attempts to load
         mainCharacterVideo.load();
       }
     });
