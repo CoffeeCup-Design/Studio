@@ -237,46 +237,36 @@
     </section>
   </main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const videoGridContainer = document.getElementById('video-grid-container');
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const videoGridContainer = document.getElementById('video-grid-container');
+    let videoCardsHtml = '';
 
-      // Define your video data as an array of objects
-      const videoData = [
-        // Using 'ae' prefix for animated emotes as per your original script
-        { sources: ["ae1.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 1" },
-        { sources: ["ae2.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 2" },
-        { sources: ["ae3.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 3" },
-        { sources: ["ae4.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Animated Intro Example 4" },
-        // Add more video entries as needed
-        // { sources: ["ae5.mp4"], alt: "Animated Intro Example 5" }
-      ];
+    const totalVideos = 12; // Change this number based on how many videos you have (ae1.mp4 to ae12.mp4)
 
-      // Generate HTML for video cards
-      let videoCardsHtml = '';
-      videoData.forEach(video => {
-        let sourceTags = '';
-        video.sources.forEach(src => {
-          // You might want to infer type or pass it in videoData if not always mp4
-          sourceTags += `<source src="${src}" type="video/mp4">`;
-        });
+    for (let i = 1; i <= totalVideos; i++) {
+      const videoFile = `ae${i}.mp4`;
+      const posterFile = `ae${i}_poster.jpg`;
 
-        videoCardsHtml += `
-          <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-            <video class="w-full h-auto object-cover" autoplay muted loop playsinline poster="${video.poster || ''}" aria-label="${video.alt}">
-              ${sourceTags}
-              Your browser does not support the video tag.
-            </video>
-            <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
-              class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
-              ✨ Message on Instagram
-            </a>
-          </div>
-        `;
-      });
-      videoGridContainer.innerHTML = videoCardsHtml;
-    });
-  </script>
+      videoCardsHtml += `
+        <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+          <video class="w-full h-auto object-cover" autoplay muted loop playsinline poster="${posterFile}" onerror="this.poster='https://placehold.co/600x400?text=Poster+Missing';" aria-label="Intro Example ${i}">
+            <source src="${videoFile}" type="video/mp4">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
+            class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
+            ✨ Message on Instagram
+          </a>
+        </div>
+      `;
+    }
+
+    videoGridContainer.innerHTML = videoCardsHtml;
+  });
+</script>
+
 
 </body>
 </html>
