@@ -237,24 +237,21 @@
     </section>
   </main>
 
- <script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     const videoGridContainer = document.getElementById('video-grid-container');
     let videoCardsHtml = '';
 
-    const totalVideos = 69; // Change this number based on how many videos you have (ae1.mp4 to ae12.mp4)
+    const totalGIFs = 69; // Number of emote GIFs you have: ae1.gif to ae69.gif
 
-    for (let i = 1; i <= totalVideos; i++) {
-      const videoFile = `ae${i}.gif`;
-      const posterFile = `ae${i}_poster.jpeg`;
+    for (let i = 1; i <= totalGIFs; i++) {
+      const gifFile = `ae${i}.gif`;
+      const posterFile = `ae${i}_poster.jpeg`; // optional, fallback if gif fails
 
       videoCardsHtml += `
         <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-          <video class="w-full h-auto object-cover" autoplay muted loop playsinline poster="${posterFile}" onerror="this.poster='https://placehold.co/600x400?text=Poster+Missing';" aria-label="Intro Example ${i}">
-            <source src="${videoFile}" type="video/mp4">
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <img src="${gifFile}" alt="Animated Emote ${i}" class="w-full h-auto object-cover" 
+               onerror="this.src='${posterFile}';" loading="lazy">
           <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
             class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
             ✨ Message on Instagram
@@ -266,6 +263,7 @@
     videoGridContainer.innerHTML = videoCardsHtml;
   });
 </script>
+
 
 
 </body>
