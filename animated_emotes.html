@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Intro Collections | CoffeeCup Design Studio</title>
+  <title>Animation Emote Collections | CoffeeCup Design Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
@@ -80,7 +80,7 @@
       flex-direction: column;
     }
 
-    /* Character Video/Image Styles */
+    /* Character Image Styles */
     .character-image {
       position: absolute;
       top: -50px;
@@ -91,15 +91,7 @@
       pointer-events: none; /* Prevents image from blocking clicks */
       filter: drop-shadow(0 0 20px var(--color-character-shadow));
       opacity: 0.8; /* Slightly reduce opacity for a softer look */
-      /* Ensure fallback image inside video is hidden by default */
     }
-    .character-image img {
-      display: none; /* Hide fallback image by default, show only if video fails */
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
 
     /* Sidebar Styles */
     .sidebar {
@@ -196,35 +188,41 @@
   </style>
 </head>
 <body class="selection:bg-fuchsia-400 selection:text-fuchsia-900">
+  <!-- Sidebar Navigation -->
   <aside class="sidebar" aria-label="Main Navigation">
     <a href="index.html" class="sidebar-button" title="Home">
       <i class="fa-solid fa-house"></i>
     </a>
-    </aside>
+    <!-- Add more sidebar links here if needed -->
+  </aside>
 
+  <!-- Main Content Container -->
   <main class="main-container mx-auto max-w-screen-xl">
-    <video autoplay muted loop playsinline class="character-image" poster="intro_charecter.png" id="mainCharacterVideo"
-           aria-label="Animated character representing CoffeeCup Design Studio">
-      <source src="animation_emote_charecter.gif" type="video/mp4">
-      <img src="intro_charecter.png" alt="Animated character fallback image">
-      Your browser does not support the video tag.
-    </video>
+    <!-- Decorative Character Image (now an <img> tag for GIF) -->
+    <img src="animation_emote_charecter.gif"
+         alt="Animated character representing CoffeeCup Design Studio"
+         class="character-image"
+         onerror="this.src='intro_charecter.png';"> <!-- Fallback to intro_charecter.png if GIF fails -->
 
+    <!-- Header / Navigation Bar -->
     <header class="flex justify-between items-center mb-6 relative z-20">
       <div class="text-white text-xl sm:text-3xl font-extrabold tracking-wide text-shadow-lg">
         CoffeeCup Design Studio
       </div>
-      </header>
+      <!-- You could add more navigation links here -->
+    </header>
 
+    <!-- Hero Section / Main Title Area -->
     <section class="flex-grow flex flex-col justify-center items-start px-2 sm:px-6 md:px-10 relative z-20 pt-6 sm:pt-8">
       <p class="text-gray-300 text-xs sm:text-base mb-2 font-light text-shadow-lg">
         We Also Make Animated Art!
       </p>
       <h1 class="text-white text-3xl sm:text-6xl font-black leading-tight mb-4 text-shadow-lg tracking-tight">
-        Intro<br>Collections
+        Animation Emote<br>Collections
       </h1>
     </section>
 
+    <!-- Work Showcase Section (Animated Intros) -->
     <section class="mt-auto relative z-20 px-2 sm:px-6 md:px-10 pb-6 sm:pb-10">
       <div class="flex items-baseline mb-4 sm:mb-6">
         <h2 class="text-white text-lg sm:text-2xl font-semibold text-shadow-lg">
@@ -232,8 +230,10 @@
         </h2>
       </div>
 
+      <!-- Video Grid Container -->
       <div id="video-grid-container" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
-        </div>
+        <!-- Video cards will be injected here by JavaScript -->
+      </div>
     </section>
   </main>
 
@@ -275,28 +275,6 @@
         `;
       });
       videoGridContainer.innerHTML = videoCardsHtml;
-
-      // --- Handling for the main character video/image fallback ---
-      const mainCharacterVideo = document.getElementById('mainCharacterVideo');
-      const fallbackImage = mainCharacterVideo.querySelector('img'); // Get the fallback img element
-
-      if (mainCharacterVideo) {
-        // Event listener for when the video fails to load
-        mainCharacterVideo.addEventListener('error', function() {
-          console.error('Error loading main character video:', mainCharacterVideo.src);
-          console.error('Network state:', mainCharacterVideo.networkState);
-          console.error('Error code:', mainCharacterVideo.error ? mainCharacterVideo.error.code : 'No error object');
-
-          // Hide the video and show the fallback image
-          mainCharacterVideo.style.display = 'none';
-          if (fallbackImage) {
-            fallbackImage.style.display = 'block';
-          }
-        });
-
-        // Ensure the video attempts to load
-        mainCharacterVideo.load();
-      }
     });
   </script>
 
