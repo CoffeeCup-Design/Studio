@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Intro Collections | CoffeeCup Design Studio</title>
+  <title>Animation Collections | CoffeeCup Design Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
@@ -209,7 +209,7 @@
         We Also Make Animated Art!
       </p>
       <h1 class="text-white text-3xl sm:text-6xl font-black leading-tight mb-4 text-shadow-lg tracking-tight">
-        Intro<br>Collections
+        2D Animation<br>Collections
       </h1>
     </section>
 
@@ -225,46 +225,36 @@
     </section>
   </main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const videoGridContainer = document.getElementById('video-grid-container');
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const videoGridContainer = document.getElementById('video-grid-container');
+    let videoCardsHtml = '';
 
-      // Define your video data as an array of objects
-      // Each object should contain the source(s) for the video and an alt description
-      const introVideoData = [
-        { sources: ["a1.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Intro Example 1", poster: "a1_poster.jpg" },
-        { sources: ["a2.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Intro Example 2", poster: "a2_poster.jpg" },
-        { sources: ["a3.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Intro Example 3", poster: "a3_poster.jpg" },
-        { sources: ["a4.mp4", "https://www.w3schools.com/html/mov_bbb.mp4"], alt: "Intro Example 4", poster: "a4_poster.jpg" },
-        // Add more video entries here as needed
-        // { sources: ["a5.mp4"], alt: "Intro Example 5", poster: "a5_poster.jpg" }
-      ];
+    const totalVideos = 12; // Change this number based on how many videos you have (a1.mp4 to a12.mp4)
 
-      // Generate HTML for video cards
-      let videoCardsHtml = '';
-      introVideoData.forEach(video => {
-        let sourceTags = '';
-        video.sources.forEach(src => {
-          // Assuming all sources are MP4 for simplicity, adjust type if needed
-          sourceTags += `<source src="${src}" type="video/mp4">`;
-        });
+    for (let i = 1; i <= totalVideos; i++) {
+      const videoFile = `a${i}.mp4`;
+      const posterFile = `a${i}_poster.jpg`;
 
-        videoCardsHtml += `
-          <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-            <video class="w-full h-auto object-cover" autoplay muted loop playsinline poster="${video.poster || ''}" aria-label="${video.alt}">
-              ${sourceTags}
-              Your browser does not support the video tag.
-            </video>
-            <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
-              class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
-              ✨ Message on Instagram
-            </a>
-          </div>
-        `;
-      });
-      videoGridContainer.innerHTML = videoCardsHtml;
-    });
-  </script>
+      videoCardsHtml += `
+        <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+          <video class="w-full h-auto object-cover" autoplay muted loop playsinline poster="${posterFile}" onerror="this.poster='https://placehold.co/600x400?text=Poster+Missing';" aria-label="Intro Example ${i}">
+            <source src="${videoFile}" type="video/mp4">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <a href="https://ig.me/m/coffeecupdesign_studio" target="_blank"
+            class="absolute bottom-3 right-3 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-600 text-white text-sm font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl backdrop-blur-sm hover:scale-105 hover:shadow-fuchsia-500/50">
+            ✨ Message on Instagram
+          </a>
+        </div>
+      `;
+    }
+
+    videoGridContainer.innerHTML = videoCardsHtml;
+  });
+</script>
+
 
 </body>
 </html>
