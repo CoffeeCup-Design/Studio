@@ -157,11 +157,11 @@
       // Number of videos for the grid (i1.mp4, i2.mp4, etc.)
       const numberOfVideosInGrid = 4;
 
-      for (let i = 1; i <= numberOfVideosInGrid; i++) {
+      for (let i = 0; i <= numberOfVideosInGrid; i++) {
         videoCardsHtml += `
           <div class="relative group glassmorphism rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
             <video class="w-full h-auto object-cover" autoplay muted loop playsinline>
-              <source src="i${i}.mp4" type="video/mp4">
+              <source src="ru${i}.mp4" type="video/mp4">
               <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
